@@ -1,0 +1,8 @@
+1.) alert of product added and go to checkout after add to cart
+2.) success page replace anna with user name
+3.) add continjure shopping buttton at success page
+4.) clear cart after placing order                                  X
+5.) to much loading after placing order at success page             X
+6.) register form ask gender and mobile number
+7.) order history rebuild properly
+8.) handle failure in payment 

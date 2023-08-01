@@ -13,6 +13,14 @@ const cartSchema = new mongoose.Schema({
         ref: "Product",
         required: true,
       },
+      name: {
+        type: String,
+        requierd: true,
+      },
+      image: {
+        type: String,
+        required: true,
+      },
       quantity: {
         type: Number,
         default: 1,
@@ -23,13 +31,6 @@ const cartSchema = new mongoose.Schema({
       price: {
         type: Number,
         required: true,
-      },
-      itemCartId: {
-        type: String,
-        required: true,
-        default: function () {
-          return `${this.productId}-${this.color}`;
-        },
       },
     },
   ],

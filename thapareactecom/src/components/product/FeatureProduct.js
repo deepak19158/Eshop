@@ -1,35 +1,24 @@
-import React from "react";
+import { useProductContext } from "../../context/productcontext";
 import styled from "styled-components";
-import { Button } from "../styles/Button";
-import FormatPrice from "../utils/FormatPrice";
-import { NavLink } from "react-router-dom";
+import Product from "./Product";
 
-const ListView = ({ products }) => {
+const FeatureProduct = () => {
+  const { isLoading, featuredProduct } = useProductContext();
+
+  if (isLoading) {
+    return <div>.....loading</div>;
+  }
+
   return (
     <Wrapper className="section">
-      <div className="container-grid">
-        {products.map((curElem) => {
-          const { _id, name, image, price, description } = curElem;
-
-          return (
-            <div className="card grid grid-two-column">
-              <figure>
-                <img src={image[0].url} alt={name} />
-              </figure>
-              <div className="card-data">
-                <h3>{name}</h3>
-                <p>
-                  <FormatPrice price={price} />
-                </p>
-                <p>{description.slice(0, 90)}...</p>
-
-                <NavLink to={`/singleproduct/${_id}`} className="btn-main">
-                  <Button className="btn">Read More</Button>
-                </NavLink>
-              </div>
-            </div>
-          );
-        })}
+      <div className="container">
+        <div className="intro-data">check Now!</div>
+        <div className="common-heading">Our Feature Services</div>
+        <div className="grid grid-three-column">
+          {featuredProduct.map((curElem) => {
+            return <Product key={curElem._id} {...curElem} />;
+          })}
+        </div>
       </div>
     </Wrapper>
   );
@@ -37,12 +26,12 @@ const ListView = ({ products }) => {
 
 const Wrapper = styled.section`
   padding: 9rem 0;
+  background-color: ${({ theme }) => theme.colors.bg};
+
   .container {
     max-width: 120rem;
   }
-  .grid {
-    gap: 3.2rem;
-  }
+
   figure {
     width: auto;
     display: flex;
@@ -74,26 +63,50 @@ const Wrapper = styled.section`
       height: 20rem;
       transition: all 0.2s linear;
     }
+    .caption {
+      position: absolute;
+      top: 15%;
+      right: 10%;
+      text-transform: uppercase;
+      background-color: ${({ theme }) => theme.colors.bg};
+      color: ${({ theme }) => theme.colors.helper};
+      padding: 0.8rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 2rem;
+    }
   }
+
   .card {
-    border: 0.1rem solid rgb(170 170 170 / 40%);
+    background-color: #fff;
+    border-radius: 1rem;
+
     .card-data {
       padding: 0 2rem;
     }
-    h3 {
+
+    .card-data-flex {
       margin: 2rem 0;
-      font-weight: 300;
-      font-size: 2.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h3 {
+      color: ${({ theme }) => theme.colors.text};
       text-transform: capitalize;
     }
+
+    .card-data--price {
+      color: ${({ theme }) => theme.colors.helper};
+    }
+
     .btn {
-      margin: 2rem 0;
+      margin: 2rem auto;
       background-color: rgb(0 0 0 / 0%);
       border: 0.1rem solid rgb(98 84 243);
       display: flex;
       justify-content: center;
       align-items: center;
-      color: rgb(98 84 243);
       &:hover {
         background-color: rgb(98 84 243);
       }
@@ -105,11 +118,7 @@ const Wrapper = styled.section`
         font-size: 1.4rem;
       }
     }
-
-    .btn-main .btn:hover {
-      color: #fff;
-    }
   }
 `;
 
-export default ListView;
+export default FeatureProduct;

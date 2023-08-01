@@ -13,10 +13,15 @@ const HeroSection = ({ myData }) => {
             <p className="intro-data">Welcome to</p>
             <h1>{name}</h1>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Laudantium a exercitationem voluptatem reprehenderit repellat,
-              totam repellendus at. Repellat qui ex atque sed neque asperiores
-              accusamus quo adipisci doloribus, itaque quae!
+              Welcome to {name}, your one-stop destination for all your
+              furniture needs. Whether you are looking for a new sofa, a dining
+              table, a bed, or anything else, we have it all at affordable
+              prices and fast delivery. Browse our wide selection of products,
+              from classic to contemporary, and find the perfect fit for your
+              home. At FurniShop, we believe that furniture is more than just
+              functional, it is an expression of your personality and taste.
+              That's why we are committed to providing you with the best
+              quality, service and value.
             </p>
             <NavLink to="/products">
               <Button>Shop Now</Button>

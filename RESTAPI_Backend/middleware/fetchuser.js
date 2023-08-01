@@ -9,6 +9,7 @@ const fetchuser = (req, res, next) => {
   try {
     // verifying and extracting data from the auth token
     const data = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("fetch user line 12", token);
 
     // and injecting the extracted data in req.user
     req.user = data.user;

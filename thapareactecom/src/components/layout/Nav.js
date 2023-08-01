@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
-import { useCartContext } from "../context/cartcontext";
+import { AiOutlineUser } from "react-icons/ai";
+import { useCartContext } from "../../context/cartcontext";
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
-  const { total_item } = useCartContext();
+  const { total_item, clearCart } = useCartContext();
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
@@ -66,18 +67,31 @@ const Nav = () => {
               Contact
             </NavLink>
           </li>
+
           {loggedIn ? (
-            <li>
-              <NavLink
-                className="navbar-link"
-                onClick={() => {
-                  localStorage.clear();
-                  window.location.reload();
-                }}
-              >
-                Logout
-              </NavLink>
-            </li>
+            <>
+              <li>
+                <NavLink
+                  reloadDocument
+                  to="/"
+                  className="navbar-link"
+                  onClick={() => {
+                    localStorage.clear();
+                    // window.location.reload();
+                    clearCart();
+                    setLoggedIn(false);
+                  }}
+                >
+                  Logout
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/profile" className="navbar-link ">
+                  <AiOutlineUser className="profile-icon" />
+                </NavLink>
+              </li>
+            </>
           ) : (
             <li>
               <NavLink
@@ -144,6 +158,16 @@ const NavWrap = styled.nav`
       }
     }
   }
+
+  .profile-icon {
+    font-size: 3rem;
+    color: ${({ theme }) => theme.colors.black};
+  }
+
+  .profile-icon:hover {
+    color: ${({ theme }) => theme.colors.helper};
+  }
+
   .mobile-navbar-btn {
     display: none;
     background-color: transparent;

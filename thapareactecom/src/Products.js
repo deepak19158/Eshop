@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import FilterSection from "./components/FilterSection";
-import Sort from "./components/Sort";
-import ProductList from "./components/ProductList";
+import FilterSection from "./components/filter/FilterSection";
+import Sort from "./components/filter/Sort";
+import ProductList from "./components/product/ProductList";
 
 const Products = () => {
   return (

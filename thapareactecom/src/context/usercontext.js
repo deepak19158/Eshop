@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { useReducer } from "react";
 import reducer from "../reducer/userReducer";
 import axios from "axios";
@@ -7,6 +7,9 @@ import axios from "axios";
 const UserContext = createContext();
 
 const initialState = {
+  user: {
+    name: "",
+  },
   login: {
     email: "",
     password: "",
@@ -50,7 +53,9 @@ export const UserProvider = ({ children }) => {
         },
       }
     );
-    localStorage.setItem("authToken", auth.data); //storing cart token in local sotrage
+    console.log("user context line 53", auth);
+    localStorage.setItem("authToken", auth.data.authtoken); //storing cart token in local sotrage
+    dispatch({ type: "SET_USERNAME", payload: auth.data.user.name }); //setting the username
 
     const cart = await axios.get("http://localhost:5000/cart", {
       //extracting cart item from mongodb
@@ -60,10 +65,6 @@ export const UserProvider = ({ children }) => {
       },
     });
     localStorage.setItem("thapaCart", JSON.stringify(cart.data.items)); //storing cart items in local storage
-    // } catch (error) {
-    //   console.log("ERROR in login", error);
-    // }
-    // const history = useHistory();
   };
 
   const SubmitSignUp = async () => {
@@ -77,7 +78,8 @@ export const UserProvider = ({ children }) => {
         },
       }
     );
-    localStorage.setItem("authToken", auth.data);
+    localStorage.setItem("authToken", auth.data.authtoken);
+    dispatch({ type: "SET_USERNAME", payload: auth.data.user.name }); //setting the username
     localStorage.setItem("thapaCart", JSON.stringify([]));
     // } catch (error) {
     //   console.log("Error in signup");

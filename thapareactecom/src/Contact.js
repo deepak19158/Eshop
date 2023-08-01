@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <Wrapper>
       <h2 className="common-heading">Contact Page</h2>
-      <iframe
+      {/* <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54163.72465918568!2d77.07627275035311!3d31.954580744210983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904f6a95c673edb%3A0x40f8c144f79ad609!2sKullu%2C%20Himachal%20Pradesh%20175101!5e0!3m2!1sen!2sin!4v1678689610585!5m2!1sen!2sin"
         width="100%"
         height="450"
@@ -12,7 +12,7 @@ const Contact = () => {
         allowFullScreen=""
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
+      ></iframe> */}
       <div className="container">
         <div className="contact-form">
           <form action="" method="post" className="contact-inputs">

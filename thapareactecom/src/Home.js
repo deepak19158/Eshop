@@ -2,11 +2,11 @@ import React from "react";
 import HeroSection from "./components/HeroSection";
 import Services from "./components/Services";
 import Trusted from "./components/Trusted";
-import FeatureProduct from "./components/FeatureProduct";
+import FeatureProduct from "./components/product/FeatureProduct";
 
 const Home = () => {
   const data = {
-    name: "Thapa Store",
+    name: "XYZ",
   };
 
   return (

@@ -5,15 +5,27 @@ import CartAmountToggle from "./CartAmountToggle";
 import { NavLink } from "react-router-dom";
 import { Button } from "../styles/Button";
 import { useCartContext } from "../context/cartcontext";
+import { useNavigate } from "react-router-dom";
 
 const AddToCart = ({ product }) => {
+  const navigate = useNavigate();
+
   const { _id, colors, stock } = product;
   const productId = _id;
-  console.log(productId);
   const { addToCart } = useCartContext();
 
   const [color, setColor] = useState(colors[0]);
   const [quantity, setQuanity] = useState(1);
+
+  const handleOnClick = () => {
+    if (localStorage.getItem("authToken") === null) {
+      navigate("/login");
+      alert("Please login ");
+    } else {
+      addToCart(productId, color, quantity, product);
+      alert("product added to cart");
+    }
+  };
 
   const setDecrease = () => {
     quantity > 1 ? setQuanity(quantity - 1) : setQuanity(1);
@@ -49,12 +61,14 @@ const AddToCart = ({ product }) => {
         setIncrease={setIncrease}
       />
 
-      <NavLink
+      {/* <NavLink
         to="/cart"
         onClick={() => addToCart(productId, color, quantity, product)}
-      >
-        <Button className="btn">Add To Cart</Button>
-      </NavLink>
+      > */}
+      <Button onClick={handleOnClick} className="btn">
+        Add To Cart
+      </Button>
+      {/* </NavLink> */}
     </Wrapper>
   );
 };

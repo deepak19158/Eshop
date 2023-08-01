@@ -31,7 +31,9 @@ const Cart = () => {
         <hr />
         <div className="cart-item">
           {cart.map((curElem) => {
-            return <CartItem key={curElem.productId} {...curElem} />;
+            return (
+              <CartItem key={curElem.productId + curElem.color} {...curElem} />
+            );
           })}
         </div>
         <hr />
@@ -66,6 +68,13 @@ const Cart = () => {
               <p>
                 <FormatPrice price={total_price + shipping_fee} />
               </p>
+            </div>
+            <hr />
+
+            <div>
+              <NavLink to="/checkout">
+                <Button>Checkout</Button>
+              </NavLink>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ const Services = () => {
           <div className="services-1">
             <div>
               <TbTruckDelivery className="icon" />
-              <h3>Super Fast and Free Delivery</h3>
+              <h3>Super Fast Delivery</h3>
             </div>
           </div>
           <div className="services-2">
@@ -23,7 +23,7 @@ const Services = () => {
             </div>
             <div className="services-column-2">
               <GiReceiveMoney className="icon" />
-              <h3>Money-back Guaranted</h3>
+              <h3>Genuine Resonable Prices</h3>
             </div>
           </div>
           <div className="services-3">

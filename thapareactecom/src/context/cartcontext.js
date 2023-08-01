@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { createContext, useContext } from "react";
 import reducer from "../reducer/cartReducer";
 import axios from "axios";
@@ -28,8 +28,8 @@ const updateProduct = async (data) => {
     let updatedData = []; //intiralized array to diractly replace items in mongo db
 
     data = data.forEach((element) => {
-      let { productId, quantity, color, price } = element;
-      updatedData.push({ productId, quantity, color, price });
+      let { productId, quantity, color, price, name, image } = element;
+      updatedData.push({ productId, quantity, color, price, name, image });
     });
 
     await axios.post("http://localhost:5000/cart/addItem", updatedData, {
@@ -49,6 +49,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (productId, color, quantity, product) => {
     //action for reducer to add procudt to cart
+
     dispatch({
       type: "ADD_TO_CART",
       payload: { productId, color, quantity, product },

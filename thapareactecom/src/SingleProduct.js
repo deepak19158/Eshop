@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useProductContext } from "./context/productcontext";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import PageNavigation from "./components/PageNavigation";
+import PageNavigation from "./components/layout/PageNavigation";
 import MyImage from "./components/MyImage";
 import { Container } from "./styles/Container";
 import FormatPrice from "./utils/FormatPrice";

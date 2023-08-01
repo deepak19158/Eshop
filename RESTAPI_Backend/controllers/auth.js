@@ -36,7 +36,7 @@ const createUser = async (req, res) => {
     };
 
     const authtoken = jwt.sign(data, process.env.JWT_SECRET);
-    res.send(authtoken);
+    res.send({ authtoken, user });
   } catch (err) {
     console.log("auth controller at line 41", err);
     res.status(500).send("Some Error Occured");
@@ -75,7 +75,7 @@ const loginUser = async (req, res) => {
     };
 
     const authtoken = jwt.sign(data, process.env.JWT_SECRET);
-    res.send(authtoken);
+    res.send({ authtoken, user });
   } catch (err) {
     console.log("auth controller at line 80", err);
     res.status(500).send("Some Error Occured");

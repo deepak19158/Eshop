@@ -17,6 +17,15 @@ const reducer = (state, action) => {
           [action.payload.name]: action.payload.value,
         },
       };
+
+    case "SET_USERNAME":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          name: action.payload,
+        },
+      };
     default:
       return state;
   }

@@ -29,7 +29,6 @@ const cartReducer = (state, action) => {
         quantity,
         image: product.image[0].url,
         price: product.price,
-        max: product.stock,
       };
 
       return {
@@ -39,7 +38,7 @@ const cartReducer = (state, action) => {
 
     case "REMOVE_ITEM":
       const updatedCart = state.cart.filter((curElem) => {
-        return curElem.productId !== action.payload;
+        return curElem.productId + curElem.color !== action.payload;
       });
       return {
         ...state,
@@ -54,7 +53,7 @@ const cartReducer = (state, action) => {
 
     case "SET_INCREMENT":
       const updatCart = state.cart.map((curElem) => {
-        if (curElem.productId === action.payload) {
+        if (curElem.productId + curElem.color === action.payload) {
           curElem.quantity += 1;
           curElem.quantity = Math.min(curElem.quantity, 5);
         }
@@ -68,7 +67,7 @@ const cartReducer = (state, action) => {
 
     case "SET_DECREMENT":
       const newCart = state.cart.map((curElem) => {
-        if (curElem.productId === action.payload) {
+        if (curElem.productId + curElem.color === action.payload) {
           curElem.quantity -= 1;
           curElem.quantity = Math.max(curElem.quantity, 1);
         }
@@ -98,7 +97,7 @@ const cartReducer = (state, action) => {
 
     case "UPDATE_CART_FROM_STORAGE":
       let localCartData = localStorage.getItem("thapaCart");
-      const parsedData = JSON.parse(localCartData);
+      let parsedData = JSON.parse(localCartData);
       if (!Array.isArray(parsedData)) {
         parsedData = [];
       }

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { BsGrid3X3, BsCardList } from "react-icons/bs";
-import { useFilterContext } from "../context/filtercontext";
+import { useFilterContext } from "../../context/filtercontext";
 
 const Sort = () => {
   const { filterProducts, gridView, setGridView, setListView, sorting } =
