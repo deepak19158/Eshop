@@ -7,6 +7,7 @@ const {
   createUser,
   loginUser,
   getLoginDetails,
+  googleSignupLogin,
 } = require("../controllers/auth");
 
 // checking and validatig the information for new user creation
@@ -48,5 +49,8 @@ router.post("/login", validateLogin, loginUser);
 
 // ROUTE:3 --> get the user loggin details
 router.get("/getuser", fetchuser, getLoginDetails);
+
+//ROUTE:4 --> login/signup using google login
+router.post("/google/login", googleSignupLogin);
 
 module.exports = router;

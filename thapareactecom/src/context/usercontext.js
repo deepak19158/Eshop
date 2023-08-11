@@ -24,12 +24,7 @@ const initialState = {
 export const UserProvider = ({ children }) => {
   // const navigate = useNavigate(); //to redirect to other page
 
-  const [authToken, setAuthToken] = useState("");
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  const set = (token) => {
-    setAuthToken(token);
-  };
 
   const onChangeLogin = (e) => {
     const { name, value } = e.target;
@@ -39,6 +34,10 @@ export const UserProvider = ({ children }) => {
   const onChangeSignup = (e) => {
     const { name, value } = e.target;
     dispatch({ type: "ON_CHANGE_SIGNUP", payload: { name, value } });
+  };
+
+  const setAuthToken = (token) => {
+    localStorage.setItem("authToken", token); //storing cart token in local sotrage
   };
 
   const SubmitLogin = async () => {
@@ -54,7 +53,8 @@ export const UserProvider = ({ children }) => {
       }
     );
     console.log("user context line 53", auth);
-    localStorage.setItem("authToken", auth.data.authtoken); //storing cart token in local sotrage
+    setAuthToken(auth.data.authtoken);
+    // localStorage.setItem("authToken", auth.data.authtoken); //storing cart token in local sotrage
     dispatch({ type: "SET_USERNAME", payload: auth.data.user.name }); //setting the username
 
     const cart = await axios.get("http://localhost:5000/cart", {
@@ -101,9 +101,7 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         ...state,
-        authToken,
         setAuthToken,
-        set,
         onChangeLogin,
         onChangeSignup,
         SubmitLogin,

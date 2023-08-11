@@ -96,4 +96,30 @@ const getLoginDetails = async (req, res) => {
   }
 };
 
-module.exports = { createUser, loginUser, getLoginDetails };
+const googleSignupLogin = async (req, res) => {
+  try {
+    let user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      user = await User.create({
+        name: req.body.name,
+        email: req.body.email,
+      });
+
+      await Cart.create({
+        userId: user.id,
+      });
+    }
+
+    const data = {
+      user: {
+        id: user.id,
+      },
+    };
+
+    const authtoken = jwt.sign(data, process.env.JWT_SECRET);
+    res.send({ authtoken, user });
+  } catch (error) {
+    res.status(500).send("Some Error Occured");
+  }
+};
+module.exports = { createUser, loginUser, getLoginDetails, googleSignupLogin };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useUserContext } from "./context/usercontext";
 import { useCartContext } from "./context/cartcontext";
@@ -7,6 +7,8 @@ import axios from "axios";
 import { FaUserAlt } from "react-icons/fa";
 import { HiOutlineMail, HiKey } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
+
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
   const {
@@ -42,6 +44,7 @@ const Login = () => {
     const passwordValue = passwordInput.value.toString();
 
     if (signup.password !== passwordValue) {
+      //confirming the password and repeat password
       alert("Password didn't matched.");
       return;
     }
@@ -64,19 +67,49 @@ const Login = () => {
     setActiveTab(value);
   };
 
-  const verifyAuthToken = async (token) => {
+  const googlelogin = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      handleGoogleloginAndCart(codeResponse);
+    },
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
+  const handleGoogleloginAndCart = async (googleuser) => {
     try {
-      if (token === null) return null;
-      const user = await axios.post("http://localhost:5000/api/auth/getuser", {
+      const profile = await axios.get(
+        `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${googleuser.access_token}`,
+        {
+          headers: {
+            Authorization: `Bearer ${googleuser.access_token}`,
+            Accept: "application/json",
+          },
+        }
+      );
+
+      const login = await axios.post(
+        `http://localhost:5000/api/auth/google/login`,
+        {
+          name: profile.data.name,
+          email: profile.data.email,
+        }
+      );
+
+      localStorage.setItem("authToken", login.data.authtoken);
+
+      const cart = await axios.get("http://localhost:5000/cart", {
+        //extracting cart item from mongodb
         headers: {
           "Content-Type": "application/json",
-          "auth-token": token,
+          "auth-token": localStorage.getItem("authToken"),
         },
       });
-      return user;
+
+      localStorage.setItem("thapaCart", JSON.stringify(cart.data.items)); //storing cart items in local storage
+
+      navigate("/");
+      navigate(0); //refreshing th page
     } catch (error) {
-      console.log(error);
-      return null;
+      console.log("line 113 ERROR", error);
     }
   };
 
@@ -262,6 +295,8 @@ const Login = () => {
                 </button>
               </form>
             </div>
+
+            <button onClick={googlelogin}>Sign in with Google </button>
           </div>
         </div>
       </div>

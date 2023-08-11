@@ -5,6 +5,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { AiOutlineUser } from "react-icons/ai";
 import { useCartContext } from "../../context/cartcontext";
+import { googleLogout } from "@react-oauth/google";
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
@@ -77,7 +78,7 @@ const Nav = () => {
                   className="navbar-link"
                   onClick={() => {
                     localStorage.clear();
-                    // window.location.reload();
+                    googleLogout();
                     clearCart();
                     setLoggedIn(false);
                   }}

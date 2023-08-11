@@ -10,7 +10,8 @@ import { useEffect } from "react";
 
 const Checkout = () => {
   const { total_price, shipping_fee } = useCartContext();
-  const { state, cartDetails, clearOrderContextState } = useOrderContext();
+  const { state, cartDetails, clearOrderContextState, billingInfo } =
+    useOrderContext();
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
@@ -41,13 +42,12 @@ const Checkout = () => {
         order_id: order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         callback_url: "http://localhost:5000/api/payment/success",
         prefill: {
-          name: "deepak gupta",
-          email: "dg91918@gmail.com",
-          contact: "8527878887",
+          name: `${billingInfo.firstName} ${billingInfo.lastName}`,
+          email: `${billingInfo.email}`,
+          contact: `${billingInfo.phone}`,
         },
         notes: {
           address: "Razorpay Corporate Office",
-          cart: JSON.stringify(cartDetails),
         },
         theme: {
           color: "#3399cc",
