@@ -1,0 +1,42 @@
+.productCard {
+  height: 350px;
+  width: 300px;
+}
+.productCard {
+  padding: 0;
+  margin: 0;
+}
+.productCard .productCardImg {
+  height: 200px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.productCard .productCardImg img {
+  width: 100%;
+  height: 100%;
+}
+.productCard .productCardBody {
+  padding: 10px;
+  margin: 0;
+}
+.productCard .productCardBody h5 {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #ff7f33;
+  font-weight: bold;
+}
+.productCard .productCardBody h3 {
+  text-transform: capitalize;
+  color: black;
+  font-size: 15px;
+}
+.productCard .productCardBody .productCardBtn {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #222;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
+}

@@ -1,0 +1,132 @@
+/* * {
+  border: 1px solid blue;
+} */
+.Contact {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  padding: 100px 50px;
+}
+.Contact .ContactText {
+  width: 30%;
+  min-width: 300px;
+  /* max-width: 600px; */
+  padding: 20px;
+}
+.Contact .ContactText h4 {
+  font-size: 18px;
+  color: #ff7f23;
+}
+.Contact .ContactText h2 {
+  font-size: 35px;
+  font-weight: bold;
+}
+.Contact .ContactText .Extras {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.Contact .ContactText .Extras .Logo {
+  height: 60px;
+  width: 60px;
+  background: #eee;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff7f23;
+  font-size: 18px;
+}
+.Contact .ContactText .Extras .Text {
+  padding-left: 40px;
+}
+.Contact .ContactText .Extras .Text h3 {
+  color: #000;
+}
+.Contact .ContactForm {
+  width: 60%;
+  min-width: 300px;
+  max-width: 800px;
+}
+.Contact .ContactForm input[type="text"] {
+  width: 300px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: #eee;
+  box-shadow: 0px 0px 0px;
+  padding: 0 20px;
+  margin: 20px;
+  min-width: 100px;
+}
+.Contact .ContactForm textarea {
+  width: 100%;
+  min-width: 100px;
+  max-width: 650px;
+  margin: 20px;
+  box-shadow: 0px 0px 0px;
+  background: #eee;
+  resize: none;
+  outline: none;
+  border: none;
+
+  height: 100px;
+}
+.Contact .ContactForm input[type="text"]:focus,
+.Contact .ContactForm textarea:focus {
+  border: 1px solid #ff7f23;
+}
+
+.Contact .ContactForm input[type="submit"]:hover {
+  color: #fff;
+}
+.Contact .ContactForm input[type="submit"] {
+  padding: 0 20px;
+  background: #ff7f23;
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  margin: 20px;
+  text-transform: capitalize;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+}
+.lastSection {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 50px 0;
+}
+.lastSection .shipmentLogo {
+  height: 100px;
+  width: 100px;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ff7f23;
+  font-size: 35px;
+}
+.lastSection .shipmentText {
+  width: 50%;
+  min-width: 300px;
+  max-width: 600px;
+  padding: 20px;
+}
+.lastSection .shipmentText h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+.lastSection .shipmentText p {
+  line-height: 40px;
+}

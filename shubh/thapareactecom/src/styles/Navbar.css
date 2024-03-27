@@ -1,0 +1,149 @@
+* {
+  /* border: 1px solid red; */
+}
+header {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  position: relative;
+}
+header .topBar {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 100px;
+  align-items: center;
+}
+/* header .topBar .subSection {
+  width: 400px;
+} */
+header .topBar .subSection .brandName {
+  font-size: 25px;
+  font-weight: bold;
+  color: #000;
+  margin-right: 25px;
+  font-family: "Times New Roman", Times, serif;
+}
+header .topBar .subSection .extras {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  border-left: 1px solid #999;
+  margin-left: 20px;
+  padding-left: 20px;
+}
+header .topBar .subSection .extras .extrasBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 15px;
+}
+header .topBar .subSection .extras .extrasBox .extrasLogo {
+  font-size: 35px;
+  color: #ff7f23;
+  transition: 0.5s;
+}
+header .topBar .subSection .extras .extrasBox:hover .extrasLogo {
+  transition: 0.5s;
+  transform: translateY(-20px);
+}
+header .topBar .subSection .extras .extrasBox .extrasText {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+header .topBar .subSection .extras .extrasBox .extrasText span:first-child {
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+}
+header .topBar .subSection .extras .extrasBox .extrasText span:last-child {
+  font-size: 12px;
+  color: #555;
+}
+
+header .topBar .functional {
+  font-size: 25px;
+  padding: 10px;
+}
+header .topBar .functional span:hover {
+  color: #555;
+  cursor: pointer;
+}
+
+header .navBar {
+  width: 100%;
+  height: 50px;
+  background: #222;
+  color: #eee;
+  padding: 10px 100px;
+}
+header .navBar ul {
+  list-style: none;
+  height: 100%;
+}
+header .navBar ul li {
+  display: inline-block;
+  font-size: 14px;
+  padding: 5px 15px;
+  font-weight: bold;
+}
+header .navBar ul li a {
+  color: #eee;
+  text-decoration: none;
+}
+header .navBar ul li:hover a {
+  color: #ff7f23;
+}
+.menuBar {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  header .topBar {
+    padding: 20px 40px;
+  }
+  header .topBar .subSection .extras {
+    display: none;
+  }
+  header .topBar .functional span:first-child {
+    display: none;
+  }
+  header .topBar .functional span:nth-child(2) {
+    display: none;
+  }
+  .menuBar {
+    display: block;
+  }
+  header .navBar {
+    display: none;
+  }
+  header .navBar.active {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    padding: 10px 50px;
+  }
+  header .navBar.active ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    gap: 20px;
+  }
+  header .navBar ul li {
+    font-size: 20px;
+  }
+  header .navBar ul li a {
+    color: #eee;
+    text-decoration: none;
+  }
+  header .navBar ul li:hover a {
+    color: #ff7f23;
+  }
+}
